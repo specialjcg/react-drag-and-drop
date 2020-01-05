@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
+import Welcome from "./components/Welcome";
+import {useStore} from './useStore';
+import Containeur from "./components/Containeur";
+import  {StoreProvider} from './useStore';
+import {StoreProviderBoard} from "./useStoreBoard";
+
 
 const App: React.FC = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <StoreProvider>
+      <div style={{ width: '100%' }}>
+          {useStore().state.states.map((choix)=><Welcome   key={choix.id}  id={choix.id} />)}
+
+
+
+<StoreProviderBoard>
+
+    <Containeur/></StoreProviderBoard>
+      </div></StoreProvider>
+
+
+
   );
-}
+};
+
 
 export default App;
